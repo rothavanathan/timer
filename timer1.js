@@ -3,7 +3,7 @@ const process = require('process');
 
 const alarm = (string, timer) => {
   setTimeout(() => process.stdout.write(string), timer);
-}
+};
 
 const alarmClock = () => {
   const alarmInputs = process.argv.slice(2);
@@ -16,23 +16,15 @@ const alarmClock = () => {
     for (const input of alarmInputs) {
       // An input is a negative number: Ignore/skip any numbers that are negative. We can't schedule anything in the past.
       // An input is not a number: Ignore/skip these as well, instead of attempting to call setTimeout with a non-number.
-      if (!isNaN(input) && input >= 0) {    
+      if (!isNaN(input) && input >= 0) {
         //multiply by 1000 for ms
-        alarm("\x07", input*1000);
-        alarm(".", input*1000);
+        alarm("\x07", input * 1000);
+        alarm(".", input * 1000);
       }
     }
   }
   //add newline character after last alarm for formatting
-  alarm("\n", ((Math.max(...alarmInputs)*1000) +1))
-}
+  alarm("\n", ((Math.max(...alarmInputs) * 1000) + 1));
+};
 
 alarmClock();
-
-
-
-
-
-
-// //test case
-// node timer1.js 10 3 5 15 9 
